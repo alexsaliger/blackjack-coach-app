@@ -1,30 +1,28 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+import 'package:coaches_dont_play/app.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:coaches_dont_play/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Home screen shows the app title and the two core trainers',
+      (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: CoachesApp()));
+    await tester.pumpAndSettle();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    expect(find.text("Coaches don't Play"), findsOneWidget);
+    expect(find.text('Basic Strategy'), findsOneWidget);
+    expect(find.text('Card Counting'), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+  testWidgets('Tapping Basic Strategy opens the drill with action buttons',
+      (tester) async {
+    await tester.pumpWidget(const ProviderScope(child: CoachesApp()));
+    await tester.pumpAndSettle();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    await tester.tap(find.text('Basic Strategy'));
+    await tester.pumpAndSettle();
+
+    // The drill screen shows the play-decision buttons.
+    expect(find.text('Hit'), findsOneWidget);
+    expect(find.text('Stand'), findsOneWidget);
   });
 }

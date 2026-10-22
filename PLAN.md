@@ -162,9 +162,15 @@ assets/
 > Toolchain: Flutter 3.47.7 (Dart 3.13.5) nach `C:\src\flutter`, git 2.55.0 — beides
 > frisch installiert. PATH-Eintrag: `C:\src\flutter\bin`.
 
-**Phase 2 — UI-Grundgerüst**
-7. App-Shell, Theme, Routing, Home.
-8. Basic Strategy Drill + Counting Drill (die zwei Kern-Trainer).
+**Phase 2 — UI-Grundgerüst — ✅ ABGESCHLOSSEN (2026-10-22)**
+7. ✅ App-Shell (`app.dart`), Casino-Theme (dark/gold), Routing, Home-Screen mit Trainer-Tiles.
+8. ✅ Basic Strategy Drill + Counting Drill (Riverpod-Controller + Screens), wiederverwendbare
+      Widgets (Karte, Action-Buttons, Feedback, Stats). Im Browser (Flutter Web) end-to-end
+      getestet; 2 Widget-Tests + weiterhin 41 Engine-Tests grün, `flutter analyze` sauber.
+
+> Hinweis Web-Preview: Debug-`web-server` rendert im App-Pane nicht (wartet auf dwds-Debug-
+> Dienst). Für die visuelle Prüfung `flutter build web --release --no-web-resources-cdn` und
+> `build/web` statisch servieren (siehe `.claude/launch.json` → Konfiguration `web-static`).
 
 **Phase 3 — Restliche Screens**
 9. Speed Count, Deviation Charts, Rules/Settings, House Edge, Stats.
