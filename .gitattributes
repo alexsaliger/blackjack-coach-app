@@ -1,0 +1,18 @@
+# Normalize text line endings to LF inside the repo (checked out natively).
+* text=auto eol=lf
+
+# Dart/Flutter sources are always LF.
+*.dart text eol=lf
+
+# Treat common binary assets as binary (no EOL conversion).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.jar binary
+*.keystore binary
