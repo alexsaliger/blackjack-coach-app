@@ -44,6 +44,12 @@ class HomeScreen extends StatelessWidget {
                   subtitle: 'Hi-Lo Running & True Count üben',
                   onTap: () => Navigator.pushNamed(context, '/counting'),
                 ),
+                _TrainerTile(
+                  icon: Icons.rule,
+                  title: 'Regeln & House Edge',
+                  subtitle: 'Regelsatz einstellen, Hausvorteil berechnen',
+                  onTap: () => Navigator.pushNamed(context, '/rules'),
+                ),
                 const SizedBox(height: 8),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
@@ -65,12 +71,6 @@ class HomeScreen extends StatelessWidget {
                   icon: Icons.tune,
                   title: 'Deviations',
                   subtitle: 'Illustrious 18 & Fab 4',
-                  enabled: false,
-                ),
-                const _TrainerTile(
-                  icon: Icons.rule,
-                  title: 'Regeln & House Edge',
-                  subtitle: 'Regelsatz einstellen, Hausvorteil berechnen',
                   enabled: false,
                 ),
               ],

@@ -172,9 +172,20 @@ assets/
 > Dienst). Für die visuelle Prüfung `flutter build web --release --no-web-resources-cdn` und
 > `build/web` statisch servieren (siehe `.claude/launch.json` → Konfiguration `web-static`).
 
-**Phase 3 — Restliche Screens**
-9. Speed Count, Deviation Charts, Rules/Settings, House Edge, Stats.
-10. Persistenz (Settings + Statistiken) → Offline vollständig.
+**Phase 3 — Restliche Screens** *(in Arbeit)*
+9. Screens:
+   - ✅ **Rules/Settings + House Edge** (`rules_screen.dart`): Regelsatz-Editor (Decks,
+        Auszahlung, S17/H17, DAS, Surrender, Resplit Aces, Penetration) mit Live-House-Edge
+        und Aufschlüsselung. Im Browser verifiziert (H17 → 0.32 % ⇒ 0.54 %).
+   - ⬜ Deviation Charts (Illustrious 18 / Fab 4 — Engine-Daten vorhanden)
+   - ⬜ Speed Count
+   - ⬜ Stats-Screen
+10. Persistenz:
+    - ✅ **RuleSet** via SharedPreferences (`data/settings_repository.dart`, in
+         `main.dart` initialisiert, `ruleSetProvider` lädt/speichert automatisch).
+    - ⬜ Statistiken persistieren.
+
+Tests: 47 grün (44 Domain + 3 Widget), `flutter analyze` sauber.
 
 **Phase 4 — Optionale „Premium"-Schicht**
 11. Account/Login, Cloud-Sync, Abo-Modell (nur falls gewünscht).

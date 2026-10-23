@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'presentation/screens/basic_strategy_drill_screen.dart';
 import 'presentation/screens/counting_drill_screen.dart';
 import 'presentation/screens/home_screen.dart';
+import 'presentation/screens/rules_screen.dart';
 import 'presentation/theme/app_theme.dart';
 
 /// Root app widget: theme and routing for the trainer screens.
@@ -22,6 +23,7 @@ class CoachesApp extends StatelessWidget {
         '/': (_) => const HomeScreen(),
         '/basic': (_) => const BasicStrategyDrillScreen(),
         '/counting': (_) => const CountingDrillScreen(),
+        '/rules': (_) => const RulesScreen(),
       },
     );
   }

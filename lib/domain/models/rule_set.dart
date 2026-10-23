@@ -71,4 +71,53 @@ class RuleSet {
 
   /// A common 6-deck Las Vegas Strip rule set (S17, DAS, late surrender).
   static const vegas6Deck = RuleSet();
+
+  Map<String, dynamic> toJson() => {
+        'decks': decks,
+        'dealerHitsSoft17': dealerHitsSoft17,
+        'doubleAfterSplit': doubleAfterSplit,
+        'surrenderAllowed': surrenderAllowed,
+        'resplitAces': resplitAces,
+        'maxSplitHands': maxSplitHands,
+        'blackjackPayout': blackjackPayout.name,
+        'penetration': penetration,
+      };
+
+  factory RuleSet.fromJson(Map<String, dynamic> json) => RuleSet(
+        decks: json['decks'] as int? ?? 6,
+        dealerHitsSoft17: json['dealerHitsSoft17'] as bool? ?? false,
+        doubleAfterSplit: json['doubleAfterSplit'] as bool? ?? true,
+        surrenderAllowed: json['surrenderAllowed'] as bool? ?? true,
+        resplitAces: json['resplitAces'] as bool? ?? false,
+        maxSplitHands: json['maxSplitHands'] as int? ?? 4,
+        blackjackPayout: BlackjackPayout.values.firstWhere(
+          (e) => e.name == json['blackjackPayout'],
+          orElse: () => BlackjackPayout.threeToTwo,
+        ),
+        penetration: (json['penetration'] as num?)?.toDouble() ?? 0.75,
+      );
+
+  @override
+  bool operator ==(Object other) =>
+      other is RuleSet &&
+      other.decks == decks &&
+      other.dealerHitsSoft17 == dealerHitsSoft17 &&
+      other.doubleAfterSplit == doubleAfterSplit &&
+      other.surrenderAllowed == surrenderAllowed &&
+      other.resplitAces == resplitAces &&
+      other.maxSplitHands == maxSplitHands &&
+      other.blackjackPayout == blackjackPayout &&
+      other.penetration == penetration;
+
+  @override
+  int get hashCode => Object.hash(
+        decks,
+        dealerHitsSoft17,
+        doubleAfterSplit,
+        surrenderAllowed,
+        resplitAces,
+        maxSplitHands,
+        blackjackPayout,
+        penetration,
+      );
 }
