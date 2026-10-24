@@ -49,4 +49,17 @@ void main() {
     expect(find.text('Decks'), findsOneWidget);
     expect(find.text('Blackjack-Auszahlung'), findsOneWidget);
   });
+
+  testWidgets('Deviations screen opens with chart and practice tabs',
+      (tester) async {
+    await tester.pumpWidget(await _app());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Deviations'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Übersicht'), findsOneWidget);
+    expect(find.text('Üben'), findsOneWidget);
+    expect(find.text('Illustrious 18'), findsOneWidget);
+  });
 }

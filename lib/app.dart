@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'presentation/screens/basic_strategy_drill_screen.dart';
 import 'presentation/screens/counting_drill_screen.dart';
+import 'presentation/screens/deviations_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/screens/rules_screen.dart';
 import 'presentation/theme/app_theme.dart';
@@ -23,6 +24,7 @@ class CoachesApp extends StatelessWidget {
         '/': (_) => const HomeScreen(),
         '/basic': (_) => const BasicStrategyDrillScreen(),
         '/counting': (_) => const CountingDrillScreen(),
+        '/deviations': (_) => const DeviationsScreen(),
         '/rules': (_) => const RulesScreen(),
       },
     );
