@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/hand.dart';
+import '../../domain/strategy/deviation_explainer.dart';
 import '../../domain/strategy/deviations.dart';
 import '../../state/deviation_drill_controller.dart';
 import '../help_texts.dart';
 import '../widgets/action_buttons.dart';
+import '../widgets/explanation_card.dart';
 import '../widgets/feedback_banner.dart';
 import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
@@ -219,6 +221,10 @@ class _PracticeTab extends ConsumerWidget {
                 '${_fmtIndex(s.deviation.index)} (sonst ${s.deviation.below.label})',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: scheme.onSurfaceVariant),
+              ),
+              const SizedBox(height: 10),
+              ExplanationCard(
+                const DeviationExplainer().explain(s.deviation, s.trueCount),
               ),
               const SizedBox(height: 14),
               FilledButton.icon(

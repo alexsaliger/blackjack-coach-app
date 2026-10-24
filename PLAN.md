@@ -201,7 +201,13 @@ Tests: 57 grün (51 Domain/State + 6 Widget), `flutter analyze` sauber.
   (💡-Karte im Feedback) — erklärt die Dealer-Stärke-Logik verständlich.
 - `InfoButton` + `help_texts.dart`: ℹ️-Konzept-Sheets in jedem Trainer (Basic Strategy,
   Hi-Lo, True Count, Deviations, Speed Count, House Edge) + „Neu hier?"-Einstieg auf Home.
-- 62 Tests grün, `flutter analyze` sauber; im Browser verifiziert.
+- `DeviationExplainer`: Begründung auch im Deviation-Übungsmodus — erklärt, warum sich die
+  Abweichung beim jeweiligen True Count lohnt (bzw. noch nicht).
+- 65 Tests grün, `flutter analyze` sauber; im Browser verifiziert.
+
+> Web-Preview-Hinweis: Der Browser-Pane cached `main.dart.js` hartnäckig (auch über Tabs via
+> Disk-Cache). Zuverlässig frisch testet man über einen **neuen Port** (= neue Origin) — in
+> `.claude/launch.json` liegt dafür `web2` auf 8087.
 
 **Phase 4 — Optionale „Premium"-Schicht**
 11. Account/Login, Cloud-Sync, Abo-Modell (nur falls gewünscht).
