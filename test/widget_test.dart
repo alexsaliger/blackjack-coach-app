@@ -62,4 +62,16 @@ void main() {
     expect(find.text('Üben'), findsOneWidget);
     expect(find.text('Illustrious 18'), findsOneWidget);
   });
+
+  testWidgets('Speed Count screen opens on the start view', (tester) async {
+    await tester.pumpWidget(await _app());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Speed Count'));
+    await tester.pumpAndSettle();
+
+    // Start view is shown (no stopwatch running, so no pending timers).
+    expect(find.text('Start'), findsOneWidget);
+    expect(find.text('Decks'), findsOneWidget);
+  });
 }

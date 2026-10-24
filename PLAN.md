@@ -180,14 +180,16 @@ assets/
    - ✅ **Deviation Charts** (`deviations_screen.dart`): Tab „Übersicht" (Illustrious 18 +
         Fab 4 + Versicherung als lesbares Chart) und Tab „Üben" (Drill mit True-Count-Vorgabe,
         Grading gegen `Deviations.recommend`). Im Browser verifiziert.
-   - ⬜ Speed Count
+   - ✅ **Speed Count** (`speed_count_screen.dart`, `speed_count_controller.dart`): ganzen
+        Shoe (1/2 Decks) gegen die Uhr durchtippen, Stoppuhr live, am Ende finalen Running
+        Count prüfen + Tempo (Karten/s). Im Browser verifiziert (52 Karten → RC 0).
    - ⬜ Stats-Screen
 10. Persistenz:
     - ✅ **RuleSet** via SharedPreferences (`data/settings_repository.dart`, in
          `main.dart` initialisiert, `ruleSetProvider` lädt/speichert automatisch).
     - ⬜ Statistiken persistieren.
 
-Tests: 51 grün (47 Domain + 4 Widget), `flutter analyze` sauber.
+Tests: 52 grün (47 Domain + 5 Widget), `flutter analyze` sauber.
 
 **Phase 4 — Optionale „Premium"-Schicht**
 11. Account/Login, Cloud-Sync, Abo-Modell (nur falls gewünscht).

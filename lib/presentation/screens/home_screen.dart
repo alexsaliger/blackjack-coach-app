@@ -51,6 +51,12 @@ class HomeScreen extends StatelessWidget {
                   onTap: () => Navigator.pushNamed(context, '/deviations'),
                 ),
                 _TrainerTile(
+                  icon: Icons.timer,
+                  title: 'Speed Count',
+                  subtitle: 'Ganzen Shoe gegen die Uhr',
+                  onTap: () => Navigator.pushNamed(context, '/speed'),
+                ),
+                _TrainerTile(
                   icon: Icons.rule,
                   title: 'Regeln & House Edge',
                   subtitle: 'Regelsatz einstellen, Hausvorteil berechnen',
@@ -68,9 +74,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const _TrainerTile(
-                  icon: Icons.timer,
-                  title: 'Speed Count',
-                  subtitle: 'Ganzen Shoe gegen die Uhr',
+                  icon: Icons.bar_chart,
+                  title: 'Statistiken',
+                  subtitle: 'Fortschritt & Trefferquoten',
                   enabled: false,
                 ),
               ],
