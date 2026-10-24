@@ -1,6 +1,6 @@
 import 'package:coaches_dont_play/app.dart';
 import 'package:coaches_dont_play/state/settings_providers.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -42,6 +42,7 @@ void main() {
     await tester.pumpWidget(await _app());
     await tester.pumpAndSettle();
 
+    await tester.scrollUntilVisible(find.text('Regeln & House Edge'), 200);
     await tester.tap(find.text('Regeln & House Edge'));
     await tester.pumpAndSettle();
 
@@ -86,5 +87,34 @@ void main() {
 
     expect(find.text('Basic Strategy'), findsOneWidget);
     expect(find.text('Speed Count'), findsOneWidget);
+  });
+
+  testWidgets('Basic Strategy shows a reason after answering', (tester) async {
+    await tester.pumpWidget(await _app());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Basic Strategy'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Hit'));
+    await tester.pumpAndSettle();
+
+    // The "why" explanation card (lightbulb) is shown.
+    await tester.scrollUntilVisible(
+        find.byIcon(Icons.lightbulb_outline), 200);
+    expect(find.byIcon(Icons.lightbulb_outline), findsOneWidget);
+  });
+
+  testWidgets('Trainer info button opens the concept sheet', (tester) async {
+    await tester.pumpWidget(await _app());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Basic Strategy'));
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.info_outline));
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('mathematisch beste'), findsOneWidget);
   });
 }

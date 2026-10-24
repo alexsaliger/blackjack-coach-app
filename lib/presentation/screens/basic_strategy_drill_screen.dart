@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/models/hand.dart';
+import '../../domain/strategy/strategy_explainer.dart';
 import '../../state/basic_strategy_drill_controller.dart';
+import '../../state/settings_providers.dart';
+import '../help_texts.dart';
 import '../widgets/action_buttons.dart';
+import '../widgets/explanation_card.dart';
 import '../widgets/feedback_banner.dart';
+import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
 import '../widgets/stat_bar.dart';
 
@@ -21,11 +26,15 @@ class BasicStrategyDrillScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(basicStrategyDrillProvider);
     final controller = ref.read(basicStrategyDrillProvider.notifier);
+    final rules = ref.watch(ruleSetProvider);
     final scheme = Theme.of(context).colorScheme;
     final s = state.scenario;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Basic Strategy')),
+      appBar: AppBar(
+        title: const Text('Basic Strategy'),
+        actions: const [InfoButton(HelpTexts.basicStrategy)],
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
@@ -94,6 +103,17 @@ class BasicStrategyDrillScreen extends ConsumerWidget {
                         ? 'Richtig! ${state.correctAction?.label}'
                         : 'Korrekt wäre: ${state.correctAction?.label}',
                   ),
+                  if (state.correctAction != null) ...[
+                    const SizedBox(height: 12),
+                    ExplanationCard(
+                      const StrategyExplainer().explain(
+                        s.player,
+                        s.dealerUp,
+                        state.correctAction!,
+                        rules,
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 16),
                   FilledButton.icon(
                     onPressed: controller.next,

@@ -196,6 +196,13 @@ Tests: 57 grün (51 Domain/State + 6 Widget), `flutter analyze` sauber.
 **→ App funktional vollständig (alle Features des Originals abgedeckt). Offen: Phase 4
 (Account/Login, Cloud-Sync, Abo) — optional.**
 
+**Zusatz — Anfängerfreundlichkeit / Lernhilfen (2026-10-24)**
+- `StrategyExplainer`: kurze Begründung („Warum") nach jeder Basic-Strategy-Entscheidung
+  (💡-Karte im Feedback) — erklärt die Dealer-Stärke-Logik verständlich.
+- `InfoButton` + `help_texts.dart`: ℹ️-Konzept-Sheets in jedem Trainer (Basic Strategy,
+  Hi-Lo, True Count, Deviations, Speed Count, House Edge) + „Neu hier?"-Einstieg auf Home.
+- 62 Tests grün, `flutter analyze` sauber; im Browser verifiziert.
+
 **Phase 4 — Optionale „Premium"-Schicht**
 11. Account/Login, Cloud-Sync, Abo-Modell (nur falls gewünscht).
 

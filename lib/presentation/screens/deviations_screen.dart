@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/hand.dart';
 import '../../domain/strategy/deviations.dart';
 import '../../state/deviation_drill_controller.dart';
+import '../help_texts.dart';
 import '../widgets/action_buttons.dart';
 import '../widgets/feedback_banner.dart';
+import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
 import '../widgets/stat_bar.dart';
 
@@ -21,6 +23,7 @@ class DeviationsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Deviations'),
+          actions: const [InfoButton(HelpTexts.deviations)],
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Übersicht'),

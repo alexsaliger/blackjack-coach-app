@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/counting_drill_controller.dart';
+import '../help_texts.dart';
 import '../widgets/feedback_banner.dart';
+import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
 import '../widgets/stat_bar.dart';
 
@@ -40,7 +42,10 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
         state.total == 0 ? 0 : (state.correct / state.total * 100).round();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Card Counting')),
+      appBar: AppBar(
+        title: const Text('Card Counting'),
+        actions: const [InfoButton(HelpTexts.counting)],
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(

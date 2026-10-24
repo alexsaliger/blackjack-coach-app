@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../help_texts.dart';
+import '../widgets/info_button.dart';
+
 /// Landing screen: app title plus tiles for each trainer. The two core
 /// trainers are active; the rest are shown as upcoming (Phase 3).
 class HomeScreen extends StatelessWidget {
@@ -31,7 +34,15 @@ class HomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: scheme.onSurfaceVariant),
                 ),
-                const SizedBox(height: 28),
+                const SizedBox(height: 10),
+                Center(
+                  child: TextButton.icon(
+                    onPressed: () => showInfoSheet(context, HelpTexts.intro),
+                    icon: const Icon(Icons.info_outline, size: 18),
+                    label: const Text("Neu hier? So funktioniert's"),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 _TrainerTile(
                   icon: Icons.style,
                   title: 'Basic Strategy',

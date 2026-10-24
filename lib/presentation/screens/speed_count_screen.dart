@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/speed_count_controller.dart';
+import '../help_texts.dart';
 import '../widgets/feedback_banner.dart';
+import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
 
 String _fmtTime(int ms) => '${(ms / 1000).toStringAsFixed(1)} s';
@@ -36,7 +38,10 @@ class _SpeedCountScreenState extends ConsumerState<SpeedCountScreen> {
     final controller = ref.read(speedCountProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Speed Count')),
+      appBar: AppBar(
+        title: const Text('Speed Count'),
+        actions: const [InfoButton(HelpTexts.speed)],
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(

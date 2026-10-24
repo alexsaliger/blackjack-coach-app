@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/analysis/house_edge.dart';
 import '../../domain/models/rule_set.dart';
 import '../../state/settings_providers.dart';
+import '../help_texts.dart';
+import '../widgets/info_button.dart';
 
 /// Lets the player configure the table [RuleSet] and shows the resulting house
 /// edge, updated live. Changes are persisted immediately.
@@ -20,7 +22,10 @@ class RulesScreen extends ConsumerWidget {
     final edge = _calc.compute(rules);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Regeln & House Edge')),
+      appBar: AppBar(
+        title: const Text('Regeln & House Edge'),
+        actions: const [InfoButton(HelpTexts.rules)],
+      ),
       body: SafeArea(
         child: Center(
           child: ConstrainedBox(
