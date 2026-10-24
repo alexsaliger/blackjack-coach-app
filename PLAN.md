@@ -172,7 +172,7 @@ assets/
 > Dienst). Für die visuelle Prüfung `flutter build web --release --no-web-resources-cdn` und
 > `build/web` statisch servieren (siehe `.claude/launch.json` → Konfiguration `web-static`).
 
-**Phase 3 — Restliche Screens** *(in Arbeit)*
+**Phase 3 — Restliche Screens — ✅ ABGESCHLOSSEN (2026-10-24)**
 9. Screens:
    - ✅ **Rules/Settings + House Edge** (`rules_screen.dart`): Regelsatz-Editor (Decks,
         Auszahlung, S17/H17, DAS, Surrender, Resplit Aces, Penetration) mit Live-House-Edge
@@ -183,13 +183,18 @@ assets/
    - ✅ **Speed Count** (`speed_count_screen.dart`, `speed_count_controller.dart`): ganzen
         Shoe (1/2 Decks) gegen die Uhr durchtippen, Stoppuhr live, am Ende finalen Running
         Count prüfen + Tempo (Karten/s). Im Browser verifiziert (52 Karten → RC 0).
-   - ⬜ Stats-Screen
+   - ✅ **Stats-Screen** (`stats_screen.dart`): Lifetime-Quote/Treffer/Streak je Trainer +
+        Speed-Bestzeit; alle Drill-Controller schreiben ihre Ergebnisse hinein.
 10. Persistenz:
     - ✅ **RuleSet** via SharedPreferences (`data/settings_repository.dart`, in
          `main.dart` initialisiert, `ruleSetProvider` lädt/speichert automatisch).
-    - ⬜ Statistiken persistieren.
+    - ✅ **Statistiken** via SharedPreferences (`data/stats_repository.dart`, `statsProvider`).
+         Nach komplettem App-Reload im Browser verifiziert.
 
-Tests: 52 grün (47 Domain + 5 Widget), `flutter analyze` sauber.
+Tests: 57 grün (51 Domain/State + 6 Widget), `flutter analyze` sauber.
+
+**→ App funktional vollständig (alle Features des Originals abgedeckt). Offen: Phase 4
+(Account/Login, Cloud-Sync, Abo) — optional.**
 
 **Phase 4 — Optionale „Premium"-Schicht**
 11. Account/Login, Cloud-Sync, Abo-Modell (nur falls gewünscht).

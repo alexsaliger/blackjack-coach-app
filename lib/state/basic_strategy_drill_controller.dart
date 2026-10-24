@@ -6,6 +6,7 @@ import '../domain/engine/scenario_generator.dart';
 import '../domain/models/action.dart';
 import '../domain/strategy/basic_strategy.dart';
 import 'settings_providers.dart';
+import 'stats_providers.dart';
 
 /// Immutable state of the basic-strategy drill.
 class BasicStrategyDrillState {
@@ -91,6 +92,7 @@ class BasicStrategyDrillController extends Notifier<BasicStrategyDrillState> {
       streak: newStreak,
       bestStreak: max(state.bestStreak, newStreak),
     );
+    ref.read(statsProvider.notifier).recordBasic(ok, newStreak);
   }
 
   void next() {

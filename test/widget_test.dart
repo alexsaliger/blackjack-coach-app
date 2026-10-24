@@ -74,4 +74,17 @@ void main() {
     expect(find.text('Start'), findsOneWidget);
     expect(find.text('Decks'), findsOneWidget);
   });
+
+  testWidgets('Stats screen opens with category cards', (tester) async {
+    await tester.pumpWidget(await _app());
+    await tester.pumpAndSettle();
+
+    // The Statistiken tile is at the bottom of the list; scroll it into view.
+    await tester.scrollUntilVisible(find.text('Statistiken'), 300);
+    await tester.tap(find.text('Statistiken'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Basic Strategy'), findsOneWidget);
+    expect(find.text('Speed Count'), findsOneWidget);
+  });
 }

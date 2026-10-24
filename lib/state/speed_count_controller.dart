@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../domain/counting/hilo_counter.dart';
 import '../domain/engine/shoe.dart';
 import '../domain/models/card.dart';
+import 'stats_providers.dart';
 
 enum SpeedPhase { idle, running, entering, finished }
 
@@ -134,6 +135,7 @@ class SpeedCountController extends Notifier<SpeedCountState> {
       truthRunning: truth,
       wasCorrect: guess == truth,
     );
+    ref.read(statsProvider.notifier).recordSpeed(state.elapsedMs);
   }
 
   void reset() {

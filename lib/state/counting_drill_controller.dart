@@ -4,6 +4,7 @@ import '../domain/counting/hilo_counter.dart';
 import '../domain/engine/shoe.dart';
 import '../domain/models/card.dart';
 import 'settings_providers.dart';
+import 'stats_providers.dart';
 
 /// Immutable state of the card-counting drill.
 class CountingDrillState {
@@ -121,6 +122,7 @@ class CountingDrillController extends Notifier<CountingDrillState> {
       correct: state.correct + (ok ? 1 : 0),
       total: state.total + 1,
     );
+    ref.read(statsProvider.notifier).recordCounting(ok);
   }
 
   /// Fresh shoe; keeps the running accuracy tally.

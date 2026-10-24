@@ -6,6 +6,7 @@ import 'presentation/screens/deviations_screen.dart';
 import 'presentation/screens/home_screen.dart';
 import 'presentation/screens/rules_screen.dart';
 import 'presentation/screens/speed_count_screen.dart';
+import 'presentation/screens/stats_screen.dart';
 import 'presentation/theme/app_theme.dart';
 
 /// Root app widget: theme and routing for the trainer screens.
@@ -27,6 +28,7 @@ class CoachesApp extends StatelessWidget {
         '/counting': (_) => const CountingDrillScreen(),
         '/deviations': (_) => const DeviationsScreen(),
         '/speed': (_) => const SpeedCountScreen(),
+        '/stats': (_) => const StatsScreen(),
         '/rules': (_) => const RulesScreen(),
       },
     );

@@ -7,6 +7,7 @@ import '../domain/models/action.dart';
 import '../domain/strategy/basic_strategy.dart';
 import '../domain/strategy/deviations.dart';
 import 'settings_providers.dart';
+import 'stats_providers.dart';
 
 class DeviationDrillState {
   const DeviationDrillState({
@@ -94,6 +95,7 @@ class DeviationDrillController extends Notifier<DeviationDrillState> {
       streak: newStreak,
       bestStreak: max(state.bestStreak, newStreak),
     );
+    ref.read(statsProvider.notifier).recordDeviation(ok, newStreak);
   }
 
   void next() {
