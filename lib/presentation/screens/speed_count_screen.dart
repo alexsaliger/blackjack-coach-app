@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/speed_count_controller.dart';
@@ -7,6 +6,7 @@ import '../help_texts.dart';
 import '../widgets/feedback_banner.dart';
 import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
+import '../widgets/signed_count_input.dart';
 
 String _fmtTime(int ms) => '${(ms / 1000).toStringAsFixed(1)} s';
 
@@ -158,19 +158,11 @@ class _SpeedCountScreenState extends ConsumerState<SpeedCountScreen> {
         Row(
           children: [
             Expanded(
-              child: TextField(
+              child: SignedCountInput(
                 controller: _guessController,
                 autofocus: true,
-                keyboardType:
-                    const TextInputType.numberWithOptions(signed: true),
-                inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'^-?\d*')),
-                ],
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'z. B. 0',
-                ),
-                onSubmitted: (_) => _submit(),
+                onSubmitted: _submit,
+                hint: 'z. B. 0',
               ),
             ),
             const SizedBox(width: 12),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../state/counting_drill_controller.dart';
@@ -7,6 +6,7 @@ import '../help_texts.dart';
 import '../widgets/feedback_banner.dart';
 import '../widgets/info_button.dart';
 import '../widgets/playing_card_view.dart';
+import '../widgets/signed_count_input.dart';
 import '../widgets/stat_bar.dart';
 
 class CountingDrillScreen extends ConsumerStatefulWidget {
@@ -112,18 +112,10 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
                 Row(
                   children: [
                     Expanded(
-                      child: TextField(
+                      child: SignedCountInput(
                         controller: _guessController,
-                        keyboardType: const TextInputType.numberWithOptions(
-                            signed: true),
-                        inputFormatters: [
-                          FilteringTextInputFormatter.allow(RegExp(r'^-?\d*')),
-                        ],
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'z. B. -2',
-                        ),
-                        onSubmitted: (_) => _check(),
+                        onSubmitted: _check,
+                        hint: 'z. B. -2',
                       ),
                     ),
                     const SizedBox(width: 12),
