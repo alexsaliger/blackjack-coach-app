@@ -111,17 +111,34 @@ class CountingDrillController extends Notifier<CountingDrillState> {
 
   /// Grades a running-count [guess] against the true running count.
   void checkRunningCount(int guess) {
-    // Only one check counts per round — deal a new card to check again.
-    // (Prevents inflating the accuracy by tapping "Prüfen" repeatedly.)
-    if (state.revealed) return;
     final truth = _counter.runningCount;
     final ok = guess == truth;
+    final trueCount = _counter.trueCount(_shoe.decksRemaining);
+
+    if (state.revealed) {
+      // Already checked this round. Allow correcting the guess (which replaces
+      // the result) but ignore re-taps with the unchanged value, so the
+      // accuracy can't be inflated by tapping "Prüfen" repeatedly.
+      if (guess == state.guess) return;
+      final prevOk = state.wasCorrect ?? false;
+      state = state.copyWith(
+        guess: guess,
+        wasCorrect: ok,
+        truthRunning: truth,
+        truthTrue: trueCount,
+        correct: state.correct - (prevOk ? 1 : 0) + (ok ? 1 : 0),
+      );
+      ref.read(statsProvider.notifier).amendCounting(prevOk, ok);
+      return;
+    }
+
+    // First check of the round: counts once.
     state = state.copyWith(
       guess: guess,
       revealed: true,
       wasCorrect: ok,
       truthRunning: truth,
-      truthTrue: _counter.trueCount(_shoe.decksRemaining),
+      truthTrue: trueCount,
       correct: state.correct + (ok ? 1 : 0),
       total: state.total + 1,
     );

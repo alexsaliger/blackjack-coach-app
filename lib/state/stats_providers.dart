@@ -36,6 +36,21 @@ class StatsNotifier extends Notifier<StatsData> {
   void recordCounting(bool ok) =>
       _set(state.copyWith(counting: state.counting.record(ok, 0)));
 
+  /// Revises the most recent counting result (correcting a guess in the same
+  /// round) without adding another attempt to the total.
+  void amendCounting(bool prevOk, bool newOk) {
+    if (prevOk == newOk) return;
+    final c = state.counting;
+    final delta = (newOk ? 1 : 0) - (prevOk ? 1 : 0);
+    _set(state.copyWith(
+      counting: CategoryStats(
+        correct: c.correct + delta,
+        total: c.total,
+        bestStreak: c.bestStreak,
+      ),
+    ));
+  }
+
   /// Records a completed speed-count run and keeps the best time.
   void recordSpeed(int timeMs) {
     final best = state.speedBestTimeMs == 0

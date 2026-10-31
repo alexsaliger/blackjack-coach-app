@@ -21,6 +21,14 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
   final _guessController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    // Rebuild on input changes so the "Prüfen" button can re-enable when the
+    // guess is edited (to correct a mistake).
+    _guessController.addListener(() => setState(() {}));
+  }
+
+  @override
   void dispose() {
     _guessController.dispose();
     super.dispose();
@@ -30,6 +38,15 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
     final value = int.tryParse(_guessController.text.trim());
     if (value == null) return;
     ref.read(countingDrillProvider.notifier).checkRunningCount(value);
+  }
+
+  /// Enabled when there is valid input and either the round hasn't been checked
+  /// yet, or the guess was edited since the last check (to allow a correction).
+  bool _canCheck(CountingDrillState state) {
+    final value = int.tryParse(_guessController.text.trim());
+    if (value == null) return false;
+    if (!state.revealed) return true;
+    return value != state.guess;
   }
 
   @override
@@ -120,7 +137,7 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
                     ),
                     const SizedBox(width: 12),
                     FilledButton(
-                      onPressed: state.revealed ? null : _check,
+                      onPressed: _canCheck(state) ? _check : null,
                       child: const Text('Prüfen'),
                     ),
                   ],
