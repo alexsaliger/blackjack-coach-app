@@ -120,7 +120,7 @@ class _CountingDrillScreenState extends ConsumerState<CountingDrillScreen> {
                     ),
                     const SizedBox(width: 12),
                     FilledButton(
-                      onPressed: _check,
+                      onPressed: state.revealed ? null : _check,
                       child: const Text('Prüfen'),
                     ),
                   ],

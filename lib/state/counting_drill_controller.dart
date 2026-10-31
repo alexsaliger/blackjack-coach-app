@@ -111,6 +111,9 @@ class CountingDrillController extends Notifier<CountingDrillState> {
 
   /// Grades a running-count [guess] against the true running count.
   void checkRunningCount(int guess) {
+    // Only one check counts per round — deal a new card to check again.
+    // (Prevents inflating the accuracy by tapping "Prüfen" repeatedly.)
+    if (state.revealed) return;
     final truth = _counter.runningCount;
     final ok = guess == truth;
     state = state.copyWith(
